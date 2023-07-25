@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -25,7 +23,7 @@ public class CalculatorControllerTest {
 
     @Test
     void whenValidInput_thenReturns200() throws Exception {
-        when(calculatorService.calculateValue(any(),any())).thenReturn(11d);
+        when(calculatorService.calculateValue(any(), any())).thenReturn(11d);
         mockMvc.perform(get("/api/v1/calculate/numbers/5/5"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("11.0"));
