@@ -1,0 +1,30 @@
+{
+  "mappings": [
+    {
+      "scenarioName": "Percentage",
+      "requiredScenarioState": "Started",
+      "request": {
+        "method": "GET",
+        "url": "/api/v1/percentage"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "percentage-ok.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "scenarioName": "Percentage",
+      "requiredScenarioState": "Server-error",
+      "request": {
+        "method": "GET",
+        "url": "/api/v1/percentage"
+      },
+      "response": {
+        "status": 500
+      }
+    }
+  ]
+}

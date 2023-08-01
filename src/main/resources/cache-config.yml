@@ -1,0 +1,6 @@
+percentage:
+  ttl: 5000
+  maxIdleTime: 5000
+buckets:
+  ttl: 10000
+  maxIdleTime: 10000
