@@ -1,7 +1,9 @@
 package com.tenpo.challenge.service;
 
+import com.tenpo.challenge.dto.PercentageDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -23,7 +25,6 @@ public class PercentageClientImpl implements PercentageClient {
     @Override
     public Double getPercentage() throws HttpServerErrorException, HttpClientErrorException {
         log.info("Trying to get percentage from client: {}", url);
-        return 10d;
-        //return restTemplate.getForObject(url, Double.class);
+        return restTemplate.getForObject(url, PercentageDto.class).getPercentage();
     }
 }

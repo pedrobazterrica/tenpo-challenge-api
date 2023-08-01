@@ -4,7 +4,6 @@ import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.BucketConfiguration;
 import io.github.bucket4j.distributed.proxy.ClientSideConfig;
 import io.github.bucket4j.redis.redisson.cas.RedissonBasedProxyManager;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.redisson.api.RedissonClient;
 import org.redisson.command.CommandExecutor;
 import org.redisson.command.CommandSyncService;
@@ -16,10 +15,8 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
