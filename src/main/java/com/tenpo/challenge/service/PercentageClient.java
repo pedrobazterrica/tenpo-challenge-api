@@ -7,7 +7,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 
 public interface PercentageClient {
-    @Cacheable("percentage")
+    @Cacheable(value = "percentage")
     @Retryable(value = {HttpServerErrorException.class, HttpClientErrorException.class},
             maxAttemptsExpression = "${retry.maxAttempts}",
             backoff = @Backoff(delayExpression = "${retry.delay}"))

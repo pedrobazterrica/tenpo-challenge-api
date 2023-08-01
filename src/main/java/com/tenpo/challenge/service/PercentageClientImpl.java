@@ -22,6 +22,7 @@ public class PercentageClientImpl implements PercentageClient {
 
     @Override
     public Double getPercentage() throws HttpServerErrorException, HttpClientErrorException {
+        log.info("Trying to get percentage from client: {}", url);
         return 10d;
         //return restTemplate.getForObject(url, Double.class);
     }
