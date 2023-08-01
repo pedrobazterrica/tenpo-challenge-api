@@ -4,6 +4,7 @@ import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.BucketConfiguration;
 import io.github.bucket4j.distributed.proxy.ClientSideConfig;
 import io.github.bucket4j.redis.redisson.cas.RedissonBasedProxyManager;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.redisson.api.RedissonClient;
 import org.redisson.command.CommandExecutor;
 import org.redisson.command.CommandSyncService;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.Duration;
 
 @EnableCaching
@@ -34,8 +36,8 @@ public class RedisConfig {
 
     @Bean(destroyMethod = "shutdown")
     public ConnectionManager redissonConnectionManager() throws IOException {
-        File resourceURL = ResourceUtils.getFile("classpath:redis.yml");
-        Config config = Config.fromYAML(resourceURL);
+        InputStream input = getClass().getClassLoader().getResourceAsStream("redis.yml");
+        Config config = Config.fromYAML(input);
         return ConfigSupport.createConnectionManager(config);
     }
 
