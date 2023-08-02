@@ -9,7 +9,7 @@
       },
       "response": {
         "status": 200,
-        "bodyFileName": "percentage-ok.json",
+        "bodyFileName": "percentage-ok-10.json",
         "headers": {
           "Content-Type": "application/json"
         }
@@ -17,7 +17,34 @@
     },
     {
       "scenarioName": "Percentage",
-      "requiredScenarioState": "Server-error",
+      "requiredScenarioState": "ok-25",
+      "request": {
+        "method": "GET",
+        "url": "/api/v1/percentage"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "percentage-ok-25.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "scenarioName": "Percentage",
+      "requiredScenarioState": "server-error",
+      "request": {
+        "method": "GET",
+        "url": "/api/v1/percentage"
+      },
+      "response": {
+        "status": 500
+      }
+    },
+    {
+      "scenarioName": "Percentage",
+      "requiredScenarioState": "fail-then-ok",
+      "newScenarioState": "Started",
       "request": {
         "method": "GET",
         "url": "/api/v1/percentage"
