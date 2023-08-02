@@ -1,9 +1,12 @@
 package com.tenpo.challenge.service;
 
+import com.tenpo.challenge.config.RestTemplateConfig;
 import com.tenpo.challenge.config.RetryConfiguration;
+import com.tenpo.challenge.dto.PercentageDto;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -20,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest(classes = {RetryConfiguration.class, PercentageClient.class, PercentageClientImpl.class})
+@SpringBootTest(classes = {RetryConfiguration.class, PercentageClient.class, PercentageClientImpl.class, RestTemplateConfig.class})
 @ActiveProfiles("test")
 public class PercentageClientRetryTest {
     @Autowired
@@ -29,13 +32,14 @@ public class PercentageClientRetryTest {
     RestTemplate restTemplate;
 
     @Test
-    @Disabled
-    void testRetry(){
-        when(restTemplate.getForObject(any(),any()))
+    void testRetry_shouldBeCalledTwice(){
+        PercentageDto percentageDto = new PercentageDto();
+        percentageDto.setPercentage(5d);
+        when(restTemplate.getForObject(anyString(),eq(PercentageDto.class)))
                 .thenThrow(new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR))
-                .thenReturn(5d);
+                .thenReturn(percentageDto);
         Double result = percentageClient.getPercentage();
-        verify(restTemplate.getForObject(any(),any()), times(2));
+        verify(restTemplate, times(2)).getForObject(anyString(),eq(PercentageDto.class));
         assertEquals(5d, result);
     }
 }

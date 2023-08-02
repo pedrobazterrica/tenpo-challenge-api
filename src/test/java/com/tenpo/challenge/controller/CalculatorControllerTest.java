@@ -32,7 +32,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class CalculatorControllerTest {
     @Autowired
     private MockMvc mockMvc;
-
     @MockBean
     private RateLimiter rateLimiter;
     @MockBean
@@ -52,7 +51,6 @@ public class CalculatorControllerTest {
     }
 
     @Test
-    @Disabled
     void whenInvalidInput_shouldReturn400BadRequest() throws Exception {
         mockMvc.perform(get("/api/v1/calculate/numbers/5/hola"))
                 .andExpect(status().isBadRequest());
