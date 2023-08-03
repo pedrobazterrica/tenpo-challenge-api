@@ -42,3 +42,10 @@ Then, while standing on the root folder in cmd run
 ```bash
 $ docker-compose up
 ```
+
+## Comentarios
+Comentarios en español porque si.
+El tiempo de vida del cache del porcentage está seteado en 5 segundos para que sea mas sencillo mostrar el funcionamiento del cache, etc.
+Facilmente se podría setear en 30 min desde el archivo cache-config.yml
+Cuando se guarda el ultimo porcentaje adquirido del servicio, este de guarda en memoria del ms, podríamos guardarlo en una bdd para que distintos pods del ms tuvieran acceso a este. Y al conseguir un valor nuevo del porcentaje sobreescribir el existente.
+Cuando recibimos más de 3 rpm devolvemos un 429 y no guardamos el log de esta llamada porque eso nos quitaria recursos, no queremos que nuestra app pueda ser tirada por un ataque DoS.
