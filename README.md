@@ -18,3 +18,27 @@ Los requerimientos son los siguientes:
 5. Tu código debe estar disponible en un repositorio público, junto con las instrucciones de cómo desplegar el servicio y cómo utilizarlo.
 6. Tener en cuenta que la aplicación funcionará de la forma de un sistema distribuido donde puede existir más de una réplica del servicio funcionando en paralelo.
 ```
+
+## Java
+
+- _Language:_ `Java <11>`
+- _Framework:_ `Springboot <2.7.14>`
+
+## Technologies
+
+- `Spring retry`
+- `Java Persistence API`
+- `Redis/Redisson`
+- `Bucket4j`
+- `RestControllerAdvice`
+- `Spring Web`
+- `Docker`
+- `Wiremock`
+
+## Local Setup
+
+To run the project you just need to have docker installed
+Then, while standing on the root folder in cmd run 
+```bash
+$ docker-compose up
+```
