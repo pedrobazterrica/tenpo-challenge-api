@@ -1,5 +1,8 @@
 package com.tenpo.challenge.config;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,7 +27,7 @@ public class RateLimiterInterceptor implements HandlerInterceptor {
         if (!rateLimiter.tryAccess("everyone")) {
             response.setStatus(TOO_MANY_REQUEST);
             response.setHeader("Retry-after", "60");
-            return false;
+            throw new HttpClientErrorException(HttpStatus.TOO_MANY_REQUESTS);
         }
         return true;
     }
