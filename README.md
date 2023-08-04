@@ -43,6 +43,12 @@ Then, while standing on the root folder in cmd run
 $ docker-compose up
 ```
 
+## Pruebas de los escenarios
+- En la raiz del proyecto hay una collection de postman para probar.
+- Para probar todos los escenarios recomiendo primero usar el llamado "set wiremock scenario server-error", luego si llamar al "Calculate numbers" que nos debería arrojar un error. Esto porque si no probamos el error del servicio de porcentaje no funcionando primero, ya tendriamos un valor de porcentaje almacenado y nunca encontraríamos esta situación.
+- El llamado "set wiremock scenario fail then ok" lo que hará será que el mock devuelva primero error y luego un valor correcto. Asi probamos que los retries funcionan.
+- Luego probar a gusto!
+
 ## Comentarios
 Comentarios en español porque si.
 El tiempo de vida del cache del porcentage está seteado en 5 segundos para que sea mas sencillo mostrar el funcionamiento del cache, etc.
