@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8090/api/v1/calculate/numbers/12/10",
+					"raw": "localhost:8090/api/v1/calculate/numbers/5/5",
 					"host": [
 						"localhost"
 					],
@@ -22,8 +22,8 @@
 						"v1",
 						"calculate",
 						"numbers",
-						"12",
-						"10"
+						"5",
+						"5"
 					]
 				}
 			},
@@ -35,7 +35,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8090/api/v1/requests?page=91&pageSize=5",
+					"raw": "localhost:8090/api/v1/requests?page=0&pageSize=20",
 					"host": [
 						"localhost"
 					],
@@ -48,11 +48,11 @@
 					"query": [
 						{
 							"key": "page",
-							"value": "91"
+							"value": "0"
 						},
 						{
 							"key": "pageSize",
-							"value": "5"
+							"value": "20"
 						}
 					]
 				}
@@ -126,20 +126,13 @@
 			"response": []
 		},
 		{
-			"name": "set Wiremock scenario ok 25 percent",
+			"name": "set Wiremock scenario Started = 10d",
 			"request": {
 				"method": "PUT",
-				"header": [
-					{
-						"key": "X-WireMock-Scenario-State",
-						"value": "ok-25",
-						"type": "text",
-						"disabled": true
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"state\": \"ok-25\"\n}",
+					"raw": "{\n    \"state\": \"Started\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -195,7 +188,45 @@
 			"response": []
 		},
 		{
-			"name": "set Wiremock scenario server-error Copy",
+			"name": "set Wiremock scenario ok 25 percent",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-WireMock-Scenario-State",
+						"value": "ok-25",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"state\": \"ok-25\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8383/__admin/scenarios/Percentage/state",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8383",
+					"path": [
+						"__admin",
+						"scenarios",
+						"Percentage",
+						"state"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "set Wiremock scenario fail then ok",
 			"request": {
 				"method": "PUT",
 				"header": [],
